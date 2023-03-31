@@ -1,5 +1,6 @@
 # RPG Project
 
+![Untitled_Artwork_2](https://user-images.githubusercontent.com/102317619/229022181-9372d592-ae61-4298-ae21-7883e0e446cc.png)
 
 
 ## Synopsis
