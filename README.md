@@ -1,5 +1,7 @@
 # RPG Project
 
+
+
 ## Synopsis
 The game we are developing is a role-playing game where monsters are attacking a village, and our protagonists must defeat them before it’s too late. The game will be a gauntlet of battles with the monsters becoming increasingly stronger as the game goes on. 
 
@@ -20,21 +22,15 @@ In addition, the jump was difficult to implement, and will be worked on more.
 
 ## Division of Labor
 Sydney: Art creation and level design
-
 Sean: Game Engine focused
 
 ## Timeline
-### Milestone 1: March 30
-#### Sydney:
-I collected some reference for the environment and created sketches for us to choose from to then be quickly made in a pixel art creation software
-#### Sean:
-Mostly worked on the battle scene. The game mechanics will remain the same, but I need to make more progress. Some things might be removed from the final version, such as the overworld.
+Milestone 1: March 30
+Sydney: I collected some reference for the environment and created sketches for us to choose from to then be quickly made in a pixel art creation software
+Sean: Mostly worked on the battle scene. The game mechanics will remain the same, but I need to make more progress. Some things might be removed from the final version, such as the overworld.
+Milestone 2: April 12
+Sydney: All level designs have been implemented and finalized all artwork is on its final iteration ready for final playtesting and debugging
+Sean: Have different types of enemies implemented with different attacks
+Final Game Submission: April 26
+Final Exam Presentation: May 4
 
-### Milestone 2: April 12
-#### Sydney:
-All level designs have been implemented and finalized all artwork is on its final iteration ready for final playtesting and debugging
-#### Sean: 
-Have different types of enemies implemented with different attacks
-
-### Final Game Submission: April 26
-### Final Exam Presentation: May 4
