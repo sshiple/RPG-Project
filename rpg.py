@@ -15,7 +15,8 @@ battleground = pygame.Rect(0, screenHeight/2, screenWidth, screenHeight)
 playerSize = playerWidth, playerHeight = 20, 20
 playerPos = playerX, playerY = 224, 378 #screenWidth/5, 3*screenHeight/5
 player = pygame.Rect(playerX, playerY, playerWidth, playerHeight)
-jumpHeight = 5
+jumpDirection = -2
+jumped = 0
 
 #Enemy Creation
 enemySize = enemyWidth, enemyHeight = 20, 20
@@ -25,17 +26,25 @@ enemy = pygame.Rect(enemyX, enemyY, enemyWidth, enemyHeight)
 
 #Player Movement
 def playerMove(player):
-    global playerY
+    global playerY, jumpDirection, jumped
     key = pygame.key.get_pressed()
-    jumped = 0
 
     #Jump
-    if key[pygame.K_w] and playerY == 378:
-        player.move_ip(0, -50)
-        playerY -= 50
-    elif playerY < 378: #w shouldn't be pressed again in the air
-        player.move_ip(0, 1)
-        playerY += 1
+    if jumped:
+        player.move_ip(0, jumpDirection)
+        playerY += jumpDirection
+        if playerY == 218: #4/5th of the jump height
+            if jumpDirection < 0:
+                jumpDirection = jumpDirection/2 #The player slows down as they reach the top of the jump
+            else:
+                jumpDirection *= 2              #The player speeds up coming from the top due to gravity.
+        if playerY == 178: #After 100 frames, the maximum height of the jump is reached.
+            jumpDirection *= -1
+        if playerY == 378: #After another 100 frames, the jump is finished
+            jumped = 0
+    elif key[pygame.K_w]:
+        jumpDirection = -2
+        jumped = 1
 
 
 #Game Loop
