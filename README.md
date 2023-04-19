@@ -19,7 +19,7 @@ The game engine will use a model-view-controller architecture discussed in class
 ## Technical Challenges
 There has been some trouble downloading proper software to create the art for the game. Aesprite is not downloading properly. It is most likely something on my end as I can’t find any documentation of the issue I was having.
 
-In addition, the jump was difficult to implement, and will be worked on more.
+In addition, the jump was difficult to implement, and will be worked on more. I also had to reorganize code to add the second character.
 
 ## Division of Labor
 #### Sydney: Art creation and level design
@@ -29,9 +29,14 @@ In addition, the jump was difficult to implement, and will be worked on more.
 ### Milestone 1: March 30
 #### Sydney: I collected some reference for the environment and created sketches for us to choose from to then be quickly made in a pixel art creation software
 #### Sean: Mostly worked on the battle scene. The game mechanics will remain the same, but I need to make more progress. Some things might be removed from the final version, such as the overworld.
+
 ### Milestone 2: April 18
-#### Sydney: All level designs have been implemented and finalized all artwork is on its final iteration ready for final playtesting and debugging
-#### Sean: Have different types of enemies implemented with different attacks
+#### Sydney: All level designs have been implemented and finalized, all artwork is on its final iteration ready for final playtesting and debugging. The artwork still needs hammering down, with coinciding color palettes with other characters in the game.
+#### Sean: Still worked on the battle scene, but I still need to make more progress. However, I implemented the jump and added a second character to be controlled.
+
 ### Final Game Submission: April 26
+#### Game should be completed at this point.
+#### Game document should also be updated.
+
 ### Final Exam Presentation: May 4
 
