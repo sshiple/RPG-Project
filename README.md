@@ -22,8 +22,8 @@ There has been some trouble downloading proper software to create the art for th
 In addition, the jump was difficult to implement, and will be worked on more.
 
 ## Division of Labor
-### Sydney: Art creation and level design
-### Sean: Game Engine focused
+#### Sydney: Art creation and level design
+#### Sean: Game Engine focused
 
 ## Timeline
 ### Milestone 1: March 30
