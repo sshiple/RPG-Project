@@ -8,6 +8,10 @@ screenSize = screenWidth, screenHeight = 1120, 630 #16:9
 surface = pygame.display.set_mode(screenSize)
 pygame.display.set_caption("RPG")
 
+#addition of images for the game
+background = pygame.image.load('bkg_image.png')
+mainCharacter = pygame.image.load('main_char_01.png')
+
 
 #Game Area
 board = pygame.Rect(0, 0, screenWidth, screenHeight)
@@ -18,7 +22,9 @@ battleground = pygame.Rect(0, screenHeight/2, screenWidth, screenHeight)
 characterSize = characterWidth, characterHeight = 20, 20
 
 character1Pos = character1X, character1Y = 4*screenWidth/20, 3*screenHeight/5
-character1 = pygame.Rect(character1X, character1Y, characterWidth, characterHeight)
+character1 = mainCharacter
+mainCharacter = pygame.Rect(character1X, character1Y, characterWidth, characterHeight)
+#character1 = pygame.Rect(character1X, character1Y, characterWidth, characterHeight)
 character1Jumped = 0
 character1JumpDirection = -1
 character2Pos = character2X, character2Y = 3*screenWidth/20, 4*screenHeight/5
@@ -89,11 +95,13 @@ while 1:
             sys.exit()
 
     surface.fill((0, 0, 125)) #Temporary background
+    surface.blit(background, (0,0)) #new background
+    surface.blit(character1,(0,0)) #
 
     characterMove(character1, character2)
 
-    pygame.draw.rect(surface, (0, 125, 0), battleground)
-    pygame.draw.rect(surface, (255, 255, 255), character1)
+    #pygame.draw.rect(surface, (0, 125, 0), battleground)
+   #pygame.draw.rect(surface, (255, 255, 255), character1)
     pygame.draw.rect(surface, (255, 255, 255), character2)
     pygame.draw.rect(surface, (255, 0, 0), enemy1)
     pygame.draw.rect(surface, (255, 0, 0), enemy2)
