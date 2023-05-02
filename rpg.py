@@ -46,6 +46,7 @@ enemy2 = pygame.Rect(enemy2X, enemy2Y, enemyWidth, enemyHeight)
 
 #Phases and Subphases
 playerPhase = 1 #If true, then it's the player phase. If false, then it's the enemy phase.
+character1Animation = 1 #If true, then it's character1's turn. If false, it's character2's turn.
 enemy1Animation = 1 #If true, then it's enemy1's turn to attack. If false, it's enemy2's turn.
 
 
@@ -53,16 +54,38 @@ enemy1Animation = 1 #If true, then it's enemy1's turn to attack. If false, it's 
 clock = pygame.time.Clock()
 
 
+#UI
+font = pygame.font.Font("Jura.ttf", 50)
+character1Right = font.render("D", True, (255, 255, 255))
+character2Right = font.render(">", True, (255, 255, 255))
+
+
 #Player Movement
 def characterMove(char1, char2, dt):
-    global character1Y, character1Jumped, character1JumpDirection, character2Y, character2Jumped, character2JumpDirection
-    global playerPhase
+    global character1X, character1Y, character1Jumped, character1JumpDirection, character2X, character2Y, character2Jumped, character2JumpDirection
+    global character1Sprite, character2Sprite, playerPhase, character1Animation
+    global character1Right, character2Right
     key = pygame.key.get_pressed()
 
     if playerPhase:
-        playerPhase = 0
-
-    if not playerPhase:
+        #Character1 Turn
+        if character1Animation:
+            character1Sprite = pygame.image.load('main_char_01.png') #Character1 is waiting for your decision...
+            surface.blit(character1Right, (character1X+50, character1Y-75))
+            if key[pygame.K_d]:
+                character1Sprite = pygame.image.load('main_char_left.png')
+                character1Sprite = pygame.transform.flip(character1Sprite, True, False)
+                character1Animation = 0
+        #Character2 Turn
+        else:
+            character2Sprite = pygame.image.load('character_variants\main_char_02.png') #Character2 is waiting for your decision...
+            surface.blit(character2Right, (character2X+50, character2Y-75))
+            if key[pygame.K_RIGHT]:
+                character2Sprite = pygame.image.load('character_variants\main_char_02_left.png')
+                character2Sprite = pygame.transform.flip(character2Sprite, True, False)
+                character1Animation = 1
+                playerPhase = 0
+    else:
         #Character1 Jump
         if key[pygame.K_w] and not character1Jumped:
             character1JumpDirection = -1 * dt
@@ -79,7 +102,6 @@ def characterMove(char1, char2, dt):
                 character1JumpDirection *= -1
             if char1.top >= character1Y: #The jump is finished.
                 character1Jumped = 0
-
         #Character2 Jump
         if key[pygame.K_UP] and not character2Jumped:
             character2JumpDirection = -1 * dt
