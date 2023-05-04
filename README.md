@@ -2,7 +2,6 @@
 
 ![Untitled_Artwork_2](https://user-images.githubusercontent.com/102317619/229022181-9372d592-ae61-4298-ae21-7883e0e446cc.png)
 
-
 ## Synopsis
 The game we are developing is a role-playing game where monsters are attacking a village, and our protagonists must defeat them before it’s too late. The game will be a gauntlet of battles with the monsters becoming increasingly stronger as the game goes on. 
 
@@ -40,3 +39,4 @@ In addition, the jump was difficult to implement, and will be worked on more. I 
 
 ### Final Exam Presentation: May 4
 
+https://user-images.githubusercontent.com/124829377/236147994-b175c3f2-c2a6-42b6-a3ea-c8f3400af7b6.mp4
