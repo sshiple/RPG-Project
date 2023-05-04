@@ -5,8 +5,9 @@ pygame.init()
 
 #Screen Creation
 screenSize = screenWidth, screenHeight = 1120, 630 #16:9
+#title_screen = t_screenWidth, t_screenHeight = 1120, 630 
 surface = pygame.display.set_mode(screenSize)
-pygame.display.set_caption("RPG")
+pygame.display.set_caption("MONSTER SMASH")
 
 
 #Addition of images for the game
@@ -17,7 +18,7 @@ character2Sprite = pygame.image.load('character_variants\main_char_02_left.png')
 character2Sprite = pygame.transform.flip(character2Sprite, True, False)
 enemy1Sprite = pygame.image.load('enemy_01_left.png')
 enemy2Sprite = pygame.image.load('character_variants\enemy_02_left.png')
-
+    
 
 #Game Area
 board = pygame.Rect(0, 0, screenWidth, screenHeight)
@@ -146,9 +147,48 @@ def enemyMove(enem1, enem2, dt):
                 playerPhase = 1 #After animation is done, the player phase begins
 
 
+#button images NEWWWW
+start_img = pygame.image.load('start_game_btn.png').convert_alpha()
+exit_img = pygame.image.load('exit_game_btn.png').convert_alpha()
+title_img = pygame.image.load('title.png').convert_alpha()
+
+#button clss
+class Button():
+    def __init__(self, x, y, image, scale):
+        width = image.get_width()
+        height = image.get_height()
+        self.image = pygame.transform.scale(image, (int(width * scale), int(height * scale)))
+        self.rect = self.image.get_rect()
+        self.rect.topleft = (x,y)
+        self.clicked = False
+
+    def draw(self):
+        action = False
+
+        position = pygame.mouse.get_pos()
+        #print(position)
+        if self.rect.collidepoint(position):
+            if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
+                self.clicked = True
+                action = True
+                # print('clicked')
+            #print("hii")
+        if pygame.mouse.get_pressed()[0] == 0:
+            self.clicked = False
+
+        surface.blit(self.image, (self.rect.x, self.rect.y))
+        return action
+
+#button creation
+start_btn = Button(150, 400, start_img, 0.2)
+exit_btn = Button(700, 400, exit_img, 0.2)
+title = Button(250,100, title_img, 0.2)
+
 #Game Loop
 #Using "while 1" instead of "while True" is more efficient
 while 1:
+
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -162,6 +202,20 @@ while 1:
     surface.blit(character2Sprite,(character2.left-60, character2.top-100))
     surface.blit(enemy1Sprite,(enemy1.left-60, enemy1.top-100))
     surface.blit(enemy2Sprite,(enemy2.left-60, enemy2.top-100))
+
+    #button functionality NEWWWWWW
+    if start_btn.draw():
+        print('Start')
+    
+    if exit_btn.draw():
+        print("start")
+
+    surface.fill((0,79,125))
+    title.draw()
+    start_btn.draw()
+    exit_btn.draw()
+
+
 
     #Movement Animations
     characterMove(character1, character2, deltaTime)
