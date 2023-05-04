@@ -8,7 +8,7 @@ surface = pygame.display.set_mode(screenSize)
 pygame.display.set_caption("MONSTER SMASH")
 
 
-#Addition of images for the game
+#Character Sprites
 character1Sprite = pygame.image.load('character/main_char_left.png')
 character1Sprite = pygame.transform.flip(character1Sprite, True, False)
 character2Sprite = pygame.image.load('character_variants/main_char_02_left.png')
@@ -87,7 +87,7 @@ character2Up = font.render("Up", True, (255, 255, 255))
 def characterMove(char1, char2, enem1, enem2, dt):
     global character1X, character1Y, character1Jumped, character1JumpDirection, character2X, character2Y, character2Jumped, character2JumpDirection
     global character1Sprite, character2Sprite, playerPhase, character1Animation, character1Right, character2Right, enemy1Health, enemy2Health
-    global pressedD, pressedS, pressedRight, pressedUp
+    global pressedD, pressedS, pressedRight, pressedUp, enemy1Sprite, enemy2Sprite
     key = pygame.key.get_pressed()
 
     #Defeated Animations
@@ -136,9 +136,14 @@ def characterMove(char1, char2, enem1, enem2, dt):
                         character1Animation = 0 #After animation is done, the char2 animation begins
                 if char1.colliderect(enem1):
                         enemy1Health -= 10
-                        enemy1Sprite = pygame.image.load('character/enemy_01_forward.png')
+                        if enemy1Health <= 0:
+                            enemy1Sprite = pygame.image.load('character/enemy_01_forward.png') #Defeated enemy1
+                            enemy1Sprite = pygame.transform.rotate(enemy1Sprite, 270)
                 if char1.colliderect(enem2):
                         enemy2Health -= 10
+                        if enemy2Health <= 0:
+                            enemy2Sprite = pygame.image.load('character_variants/enemy_02_forward.png') #Defeated enemy2
+                            enemy2Sprite = pygame.transform.rotate(enemy2Sprite, 270)
         #Character2 Turn
         else:
             if character2Health <= 0:
@@ -179,8 +184,14 @@ def characterMove(char1, char2, enem1, enem2, dt):
                         playerPhase = 0
                 if char2.colliderect(enem1):
                         enemy1Health -= 15
+                        if enemy1Health <= 0:
+                            enemy1Sprite = pygame.image.load('character/enemy_01_forward.png')
+                            enemy1Sprite = pygame.transform.rotate(enemy1Sprite, 270)
                 if char2.colliderect(enem2):
                         enemy2Health -= 15
+                        if enemy2Health <= 0:
+                            enemy2Sprite = pygame.image.load('character_variants/enemy_02_forward.png')
+                            enemy2Sprite = pygame.transform.rotate(enemy2Sprite, 270)
     #Enemy Phase
     else:
         if character1Health > 0:
@@ -240,9 +251,7 @@ def enemyMove(enem1, enem2, char1, char2, dt):
         #Enemy1 Attack Animation
         if enemy1Animation:
             if enemy1Health <= 0:
-                enemy1Sprite = pygame.image.load('character/enemy_01_forward.png')
-                enemy1Sprite = pygame.transform.rotate(enemy1Sprite, 270)
-                enemy1Animation = 0
+                enemy1Animation = 0 #Instantly ends enemy1's turn
             elif enem1.left+enem1.width > 0:
                 if enemy1Target == 1:
                     enem1.move_ip(-1*dt, 0)
@@ -266,8 +275,6 @@ def enemyMove(enem1, enem2, char1, char2, dt):
         #Enemy2 Attack Animation
         else:
             if enemy2Health <= 0:
-                enemy2Sprite = pygame.image.load('character_variants/enemy_02_forward.png')
-                enemy2Sprite = pygame.transform.rotate(enemy2Sprite, 270)
                 enemy1Animation = 1
                 char1.update(character1X, character1Y, characterWidth, characterHeight) #Updating just in case the player jumps once the phase ended,
                 char2.update(character2X, character2Y, characterWidth, characterHeight) #causing them to float in the air.
