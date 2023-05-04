@@ -1,5 +1,4 @@
 import pygame, sys, random #Imports the required libraries
-
 pygame.init()
 
 
@@ -303,9 +302,6 @@ def enemyMove(enem1, enem2, char1, char2, dt):
 while 1:
     key = pygame.key.get_pressed()
 
-    #print("1: ", enemy1Health)
-    #print("2: ", enemy2Health)
-
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -314,7 +310,7 @@ while 1:
     deltaTime = clock.tick(60)/2 #The time that has passed since the last call to clock.tick(), capped at 60 fps. Divided by 2 to make things slower.
 
     #Drawing Sprites
-    if (not gameStart):
+    if not gameStart:
         #Title Screen
         surface.blit(titleScreen, (0, 0))
         surface.blit(start, (320, 420))
